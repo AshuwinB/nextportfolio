@@ -3,7 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
 export default function ModalProje() {
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
     setIsOpen(false);
@@ -61,101 +61,113 @@ export default function ModalProje() {
                     <form>
                       <div className="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            First name
+                          <label className="block mb-2 text-sm font-medium text-gray-900">
+                            Title
                           </label>
                           <input
                             type="text"
                             id="first_name"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="John"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                             focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400
+                               dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Title"
                             required
                           />
                         </div>
                         <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Last name
+                          <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                            Type
                           </label>
                           <input
                             type="text"
                             id="last_name"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Doe"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                             focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400
+                               dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Type"
                             required
                           />
                         </div>
                         <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Company
+                          <label className="block mb-2 text-sm font-medium text-gray-900">
+                            Start Date
                           </label>
                           <input
-                            type="text"
+                            type="date"
                             id="company"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Flowbite"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                              dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Start Date"
                             required
                           />
                         </div>
                         <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Phone number
+                          <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                          End Date
                           </label>
                           <input
-                            type="tel"
+                            type="date"
                             id="phone"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                              dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="123-45-678"
-                            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
                             required
                           />
                         </div>
                         <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                          <label className="block mb-2 text-sm font-medium text-gray-900 ">
                             Website URL
                           </label>
                           <input
                             type="url"
                             id="website"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                             focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                              dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="flowbite.com"
                             required
                           />
                         </div>
                         <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                            Unique visitors (per month)
+                          <label className="block mb-2 text-sm font-medium text-gray-900">
+                            Image Url
                           </label>
                           <input
-                            type="number"
+                            type="url"
                             id="visitors"
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                             focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400
+                              dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder=""
                             required
                           />
                         </div>
                       </div>
                       <div className="mb-6">
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                          Email address
+                        <label className="block mb-2 text-sm font-medium text-gray-900">
+                         About
                         </label>
                         <input
-                          type="email"
+                          type="text"
                           id="email"
-                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          placeholder="john.doe@company.com"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+                           focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
+                            dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500
+                             dark:focus:border-blue-500"
+                          placeholder="About"
                           required
                         />
                       </div>
-                    <div className="flex justify-center">
-                    <button
-                        type="submit"
-                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                      >
-                        Submit
-                      </button>
-                    </div>
-                      
-                     
+                      <div className="flex justify-center">
+                        <button
+                          type="submit"
+                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        >
+                          Submit
+                        </button>
+                      </div>
                     </form>
                   </div>
                 </Dialog.Panel>
