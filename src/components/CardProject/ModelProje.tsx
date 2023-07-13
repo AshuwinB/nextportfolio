@@ -1,8 +1,11 @@
 "use client";
 import { Dialog, Transition } from "@headlessui/react";
+import { useSession } from "next-auth/react";
 import { Fragment, useState } from "react";
 
-export default function ModalProje() {
+export default function ModalProje({mutate}:any) {
+  const session: any = useSession();
+
   let [isOpen, setIsOpen] = useState(false);
 
   function closeModal() {
@@ -13,17 +16,56 @@ export default function ModalProje() {
     setIsOpen(true);
   }
 
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const title = e.target[0].value;
+    const type = e.target[1].value;
+    const startdate = e.target[2].value;
+    const enddate = e.target[3].value;
+    const websiteurl = e.target[4].value;
+    const imageurl = e.target[5].value;
+    const about = e.target[6].value;
+    const githuburl = e.target[7].value;
+
+    try {
+      await fetch("/api/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          title,
+          type,
+          startdate,
+          enddate,
+          websiteurl,
+          imageurl,
+          about,
+          githuburl,
+          username: session.data.user.name,
+          email: session.data.user.email,
+        }),
+      });
+      e.target.reset();
+      mutate()
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
-      <div className="flex items-center justify-center">
-        <button
-          type="button"
-          onClick={openModal}
-          className="rounded-md bg-amber-400 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Create
-        </button>
-      </div>
+      {session.status === "unauthenticated" ? (
+        ""
+      ) : (
+        <div className="flex items-center justify-center">
+          <button
+            type="button"
+            onClick={openModal}
+            className="rounded-md bg-amber-400 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+          >
+            Create
+          </button>
+        </div>
+      )}
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -58,7 +100,7 @@ export default function ModalProje() {
                     Create Your Project
                   </Dialog.Title>
                   <div className="mt-2">
-                    <form>
+                    <form onSubmit={handleSubmit}>
                       <div className="grid gap-6 mb-6 md:grid-cols-2">
                         <div>
                           <label className="block mb-2 text-sm font-medium text-gray-900">
@@ -66,7 +108,6 @@ export default function ModalProje() {
                           </label>
                           <input
                             type="text"
-                            id="first_name"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
                              focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400
                                dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -80,7 +121,6 @@ export default function ModalProje() {
                           </label>
                           <input
                             type="text"
-                            id="last_name"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
                              focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400
                                dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -94,7 +134,6 @@ export default function ModalProje() {
                           </label>
                           <input
                             type="date"
-                            id="company"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                               dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -104,11 +143,10 @@ export default function ModalProje() {
                         </div>
                         <div>
                           <label className="block mb-2 text-sm font-medium text-gray-900 ">
-                          End Date
+                            End Date
                           </label>
                           <input
                             type="date"
-                            id="phone"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                               dark:border-gray-600 dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -122,7 +160,6 @@ export default function ModalProje() {
                           </label>
                           <input
                             type="url"
-                            id="website"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                              focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                               dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -136,7 +173,6 @@ export default function ModalProje() {
                           </label>
                           <input
                             type="url"
-                            id="visitors"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
                              focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400
                               dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -147,11 +183,10 @@ export default function ModalProje() {
                       </div>
                       <div className="mb-6">
                         <label className="block mb-2 text-sm font-medium text-gray-900">
-                         About
+                          About
                         </label>
                         <input
                           type="text"
-                          id="email"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
                            focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 
                             dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500
@@ -160,11 +195,21 @@ export default function ModalProje() {
                           required
                         />
                       </div>
-                      <div className="flex justify-center">
-                        <button
-                          type="submit"
-                          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        >
+                      <div>
+                        <label className="block mb-2 text-sm font-medium text-gray-900">
+                          GitHub Url
+                        </label>
+                        <input
+                          type="url"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500
+                             focus:border-blue-500 block w-full p-2.5  dark:border-gray-600 dark:placeholder-gray-400
+                              dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          placeholder=""
+                          required
+                        />
+                      </div>
+                      <div className="flex justify-center mt-3">
+                        <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                           Submit
                         </button>
                       </div>

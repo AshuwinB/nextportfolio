@@ -10,8 +10,6 @@ const Navbar = () => {
 
   const session = useSession();
 
-  console.log(session);
-
   const handleLogout = async () => {
     await signOut();
     router.push("/");
