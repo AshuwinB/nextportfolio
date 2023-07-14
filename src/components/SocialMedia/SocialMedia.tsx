@@ -22,7 +22,7 @@ const SocialMedia = () => {
         <Link href="https://www.linkedin.com/in/rishi-bose%F0%9F%98%87-4934ba252/">
           <BsLinkedin className="h-10 w-10 text-blue-600" />
         </Link>
-        <Link href="https://www.facebook.com/rishi.bose.1119/">
+        <Link href="https://www.instagram.com/rishibose31/">
           <BsInstagram className="h-10 w-10 text-pink-600" />
         </Link>
         <Link href="https://www.youtube.com/@darkillerlivegaming">

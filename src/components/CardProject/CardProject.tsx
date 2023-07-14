@@ -33,7 +33,7 @@ const CardProject = () => {
       
       <div className=" grid grid-cols-1 md:col-span-2 gap-4 lg:grid-cols-2 mb-4">
         {data.map((item: any,index:number) => (
-          <div key={index} className="max-w-sm hover:bg-rose-300 bg-white border mt-5 h-fit border-gray-200 rounded-lg shadow  dark:border-gray-700">
+          <div key={index} className="max-w-sm hover:bg-stone-200 bg-white border mt-5 h-fit border-gray-200 rounded-lg shadow  dark:border-gray-700">
             <div className="flex justify-center pt-4">
               <Image src={item.imageurl} alt="" width={500} height={500} />
             </div>

@@ -6,10 +6,10 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="container mx-auto max-w-7xl mt-10">
+    <div className="container mx-auto max-w-7xl mt-10 mb-20">
       <div className="grid lg:grid-cols-2 grid-col-1">
         <div className="container mx-auto px-3">
-          <p className="text-xl lg:pt-32 pt-20">Hey !</p>
+          <p className="text-xl lg:pt-10 pt-20">Hey !</p>
           <p className="text-7xl pt-5 font-semibold">
             I m <span className="text-amber-400">Rishi Bose.</span>
           </p>
