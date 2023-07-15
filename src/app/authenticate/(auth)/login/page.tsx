@@ -1,24 +1,30 @@
 "use client";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import React from "react";
 import { useRouter } from "next/navigation";
-
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Login() {
-
   const router = useRouter();
 
   const session = useSession();
 
-  console.log(session);
+  // console.log(session);
 
   if (session.status === "loading") {
     return <p>Loading</p>;
   }
 
   if (session.status === "authenticated") {
-    router?.push("/");
+    toast.success("Login successful")
+    setTimeout(() => {
+      router?.push("/");
+    }, 2000);
+    
   }
+
+
+
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -27,10 +33,9 @@ export default function Login() {
     signIn("credentials", { email, password });
   };
 
- 
-
   return (
     <div>
+      <Toaster />
       <section>
         <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
           <div className="xl:mx-auto xl:w-full xl:max-w-sm 2xl:max-w-md">
@@ -90,10 +95,8 @@ export default function Login() {
                   </div>
                 </div>
                 <div>
-                  <button
-                    className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
-                  >
-                    Get started
+                  <button className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80">
+                    Login
                   </button>
                 </div>
               </div>
@@ -101,28 +104,6 @@ export default function Login() {
           </div>
         </div>
       </section>
-      {/* <div className={styles.container}>
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="email"
-            className={styles.input}
-            required
-          />
-          <input
-            type="password"
-            placeholder="password"
-            className={styles.input}
-            required
-          />
-          <button className={styles.button}>Login</button>
-        </form>
-        {err && "Someting Went Wrong"}
-        <Link href="/dashboard/register">Login with an account</Link>
-      </div>
-      <button onClick={handleLogout} className={styles.button + " " + styles.google}>
-        Login with google
-      </button> */}
     </div>
   );
 }

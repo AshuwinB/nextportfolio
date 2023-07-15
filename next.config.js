@@ -7,7 +7,7 @@ const nextConfig = {
             "camo.githubusercontent.com",
             "firebasestorage.googleapis.com",
             "i.pinimg.com",
-            "images.pexels.com"
+            "images.pexels.com",
         ]
     }
 }

@@ -60,7 +60,10 @@ const CardProject = () => {
                       <p>{item.type}</p>
                     </div>
                   </Link>
-                  <CiEdit className="h-6 w-6 text-blue-500" />
+                  {
+                    session.status ==="authenticated"? <CiEdit className="h-6 w-6 text-blue-500" />:""
+                  }
+                 
                 </div>
              
             </div>
